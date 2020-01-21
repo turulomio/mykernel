@@ -28,6 +28,7 @@ class Procedure(Command):
         print("  * git commit -a -m 'mykernel-{}'".format(__version__))
         print("  * git push")
         print(_("  * Make a new tag in github"))
+        print("  * python setup.py uninstall")
         print(_("  * Create a new gentoo ebuild with the new version"))
         print(_("  * Upload to portage repository")) 
 
