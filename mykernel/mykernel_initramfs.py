@@ -83,7 +83,7 @@ echo "Failed to init Gentoo..."
             ##They are added to saved set
            for line in popen("ldd -v {}".format(program)):
               if line.find("no es un ejecutable")>=0:
-                 return
+                 break
               if line.find("Version information")>0:
                  continue
               if line.find(":")>0:
