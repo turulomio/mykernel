@@ -1,0 +1,100 @@
+.TH MYKERNEL 1 2020\-01\-30
+.SH NAME
+
+.B mykernel:
+Change files and directories owner and permissions recursively.
+.SH SYNOPSIS
+
+mykernel usage: mykernel [\-h] [\-\-version] [\-\-config]
+.SH DESCRIPCI\('ON
+
+.PP
+This app has the following mandatory parameters:
+.PP
+.RS
+.B \-\-config
+.RE
+.PP
+.RS
+.RS
+It writes a config file in /etc/mykernel/mykernel.ini
+.RE
+.RE
+.SH MYKERNEL.INI CONFIGURATION HELP
+
+.PP
+.B [cpupower]
+.PP
+.RS
+.B cpu_hz
+.RE
+.PP
+.RS
+.RS
+Number of CPU scaling frequency. Default is maximum scaling frequency. Leave at it is if you don't know what are you doing.
+.RE
+.RE
+.PP
+.B [initramfs]
+.PP
+.RS
+.B encrypted_root_partition
+.RE
+.PP
+.RS
+.RS
+Encrypted partition device name. Empty if there isn't encription in our system.
+.RE
+.RE
+.PP
+.B [grub]
+.PP
+.RS
+.B efi
+.RE
+.PP
+.RS
+.RS
+True if it uses and EFI system with gpt partition table. False if system uses dos partiton with mbr block.
+.RE
+.RE
+.PP
+.RS
+.B boot_directory
+.RE
+.PP
+.RS
+.RS
+Path to boot directory. By default /boot.
+.RE
+.RE
+.PP
+.RS
+.B efi_target
+.RE
+.PP
+.RS
+.RS
+Can be one of grub targets for efi. x86_64\-efi, i386\-pc...
+.RE
+.RE
+.PP
+.RS
+.B efi_partition
+.RE
+.PP
+.RS
+.RS
+Partition name where EFI directory is.
+.RE
+.RE
+.PP
+.RS
+.B mbr_device
+.RE
+.PP
+.RS
+.RS
+Device name where mbr is going to be installed. Only works for none EFI systems.
+.RE
+.RE

@@ -5,37 +5,50 @@ from mykernel.mykernel_initramfs import initramfs
 from mykernel.myconfigparser import MyConfigParser
 from mykernel.cpupower import sys_set_cpu_max_scaling_freq, sys_get_cpu_max_freq, sys_get_cpu_max_scaling_freq
 from mykernel.objects.command import command
-from os import chdir
+from mykernel.version import __version__, __versiondate__
+from mykernel.gettext import _
+from sys import exit
 
 def main():
     start=datetime.now()
-    parser=ArgumentParser("Initramfs generator for luks root partition")
-    #parser.add_argument('-e', '--encrypted', help='Where encrypted device is', default='/dev/nvme0n1p2')
+    parser=ArgumentParser(description=_("My method to compile the Linux kernel"))
+    parser.add_argument('--version', action='version', version="{} ({})".format(__version__, __versiondate__))
+    parser.add_argument('--config', help=_("Write a config file in /etc/mykernel/mykernel.ini"),  action='store_true',  default=False)
     args=parser.parse_args()
-    #print(args)
     config=MyConfigParser('/etc/mykernel/mykernel.ini')
     
     cpu_hz_before=sys_get_cpu_max_scaling_freq()
     cpu_hz=config.get('cpupower','cpu_hz',  str(sys_get_cpu_max_freq()))
     
-    efi_directory=config.get("grub", 'efi_directory', '/boot')
-    efi_target=config.get('grub', 'efi_target', 'x86_64-efi')
-    efi_partition=config.get('grub', 'efi_partition',  '/dev/sda1')
+    efi=config.get("grub", "efi", "True")
+    boot_directory =config.get("grub", 'boot_directory', '/boot')
+    efi_target=config.get("grub", 'efi_target', 'x86_64-efi')
+    efi_partition=config.get("grub", 'efi_partition',  '/dev/sda1')
+    mbr_device=config.get("grub", "mbr_device", "")
     
     encrypted_root_partition=config.get("initramfs", 'encrypted_root_partition', '')
+    
+    if args.config==True: #Writes a config file
+        config.save()
+        print("You must set your settings in /etc/mykernel/mykernel.ini. Use man mykernel for help.")
+        exit(0)
     
     sys_set_cpu_max_scaling_freq(int(cpu_hz))
 
     #chdir("/usr/src/linux")
     if encrypted_root_partition!="":
-        initramfs(encrypted_root_partition, start, efi_directory)
+        initramfs(encrypted_root_partition, start, boot_directory)
     command("make -j{}".format(cpu_count()))
     command("make modules_install")
     command("make install")
     command("emerge @module-rebuild --keep-going")
 
-    command("grub-install --efi-directory={} --target={} {}".format(efi_directory, efi_target, efi_partition))
-    command("grub-mkconfig -o {}/grub/grub.cfg".format(efi_directory))
+    if efi=="True":#Gpt partition with efi
+        command("grub-install --efi-directory={} --target={} {}".format(boot_directory, efi_target, efi_partition))
+        command("grub-mkconfig -o {}/grub/grub.cfg".format(boot_directory))
+    else:#Dos partition with mbr
+        command("grub-install {}".format(mbr_device))
+        command("grub-mkconfig -o {}/grub/grub.cfg".format(boot_directory))
     
     sys_set_cpu_max_scaling_freq(cpu_hz_before)
     config.save()
