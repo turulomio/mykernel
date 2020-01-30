@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+- Added suppor for MBR disk installations.
+- Added man documentation.
+- Improved spanish translations.
+
 ## 0.3.0
 - Solved critical bug due to a bad return
 

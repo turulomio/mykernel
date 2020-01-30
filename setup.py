@@ -91,29 +91,28 @@ class Doc(Command):
         man.paragraph(_("It writes a config file in /etc/mykernel/mykernel.ini"), 3)
         
         man.header(_("MYKERNEL.INI CONFIGURATION HELP"), 1)
-        man.paragraph(_("[cpupower]"), 1, True)
-        man.paragraph(_("cpu_hz"), 2,  True)
+        man.paragraph("[cpupower]", 1, True)
+        man.paragraph("cpu_hz", 2,  True)
         man.paragraph(_("Number of CPU scaling frequency. Default is maximum scaling frequency. Leave at it is if you don't know what are you doing."), 3)
 
-        man.paragraph(_("[initramfs]"), 1, True)
-        man.paragraph(_("encrypted_root_partition"), 2,  True)
+        man.paragraph("[initramfs]", 1, True)
+        man.paragraph("encrypted_root_partition", 2,  True)
         man.paragraph(_("Encrypted partition device name. Empty if there isn't encription in our system."), 3)
 
-        man.paragraph(_("[grub]"), 1, True)
-        man.paragraph(_("efi"), 2,  True)
+        man.paragraph("[grub]", 1, True)
+        man.paragraph("efi", 2,  True)
         man.paragraph(_("True if it uses and EFI system with gpt partition table. False if system uses dos partiton with mbr block."), 3)
         
-        man.paragraph(_("boot_directory"), 2,  True)
+        man.paragraph("boot_directory", 2,  True)
         man.paragraph(_("Path to boot directory. By default /boot."), 3)
-        
-        
-        man.paragraph(_("efi_target"), 2,  True)
+
+        man.paragraph("efi_target", 2,  True)
         man.paragraph(_("Can be one of grub targets for efi. x86_64-efi, i386-pc..."), 3)
         
-        man.paragraph(_("efi_partition"), 2,  True)
+        man.paragraph("efi_partition", 2,  True)
         man.paragraph(_("Partition name where EFI directory is."), 3)
 
-        man.paragraph(_("mbr_device"), 2,  True)
+        man.paragraph("mbr_device", 2,  True)
         man.paragraph(_("Device name where mbr is going to be installed. Only works for none EFI systems."), 3)
         
         
@@ -156,7 +155,7 @@ else:
     data_files=[]
 setup(name='mykernel',
     version=__version__,
-    description='Change files and directories permisions and owner recursivily from current directory',
+    description='My kernel scripts to compile it',
     long_description="Project web page is in https://github.com/turulomio/mykernel",
     long_description_content_type='text/markdown',
     classifiers=['Development Status :: 4 - Beta',
@@ -165,7 +164,7 @@ setup(name='mykernel',
                  'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
                  'Programming Language :: Python :: 3',
                 ],
-    keywords='change permissions ownner files directories',
+    keywords='gentoo kernel linux compile initramfs cryptsetup grub',
     url='https://github.com/turulomio/mykernel',
     author='turulomio',
     author_email='turulomio@yahoo.es',

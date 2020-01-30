@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 11:41+0100\n"
+"POT-Creation-Date: 2020-01-30 16:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,52 +53,22 @@ msgstr ""
 msgid "MYKERNEL.INI CONFIGURATION HELP"
 msgstr ""
 
-msgid "[cpupower]"
-msgstr ""
-
-msgid "cpu_hz"
-msgstr ""
-
 msgid "Number of CPU scaling frequency. Default is maximum scaling frequency. Leave at it is if you don't know what are you doing."
-msgstr ""
-
-msgid "[initramfs]"
-msgstr ""
-
-msgid "encrypted_root_partition"
 msgstr ""
 
 msgid "Encrypted partition device name. Empty if there isn't encription in our system."
 msgstr ""
 
-msgid "[grub]"
-msgstr ""
-
-msgid "efi"
-msgstr ""
-
 msgid "True if it uses and EFI system with gpt partition table. False if system uses dos partiton with mbr block."
-msgstr ""
-
-msgid "boot_directory"
 msgstr ""
 
 msgid "Path to boot directory. By default /boot."
 msgstr ""
 
-msgid "efi_target"
-msgstr ""
-
 msgid "Can be one of grub targets for efi. x86_64-efi, i386-pc..."
 msgstr ""
 
-msgid "efi_partition"
-msgstr ""
-
 msgid "Partition name where EFI directory is."
-msgstr ""
-
-msgid "mbr_device"
 msgstr ""
 
 msgid "Device name where mbr is going to be installed. Only works for none EFI systems."
