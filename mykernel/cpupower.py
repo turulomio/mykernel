@@ -3,6 +3,9 @@
 
 from os import path
 
+def is_cpufreq_configured():
+    return path.exists("/sys/devices/system/cpu/cpu0/cpufreq/")
+
 def sys_get_cpu_max_freq():
     with open("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq") as f:
         data = f.read()
@@ -50,31 +53,32 @@ def sys_set_cpu_turbo(boolean):
 if __name__ == '__main__':
     sleeptime=2
     from time import sleep
+    
+    print("Is kernel cpufreq configured?:", is_cpufreq_configured())
 
-    print("Max cpu freq is {}".format(sys_get_cpu_max_freq()))
+    if is_cpufreq_configured():
+        print("Max cpu freq is {}".format(sys_get_cpu_max_freq()))
 
-    print("Min cpu freq is {}".format(sys_get_cpu_min_freq()))
+        print("Min cpu freq is {}".format(sys_get_cpu_min_freq()))
 
-    print("Current cpu freq is {}".format(sys_get_cpu_current_freq()))
+        print("Current cpu freq is {}".format(sys_get_cpu_current_freq()))
 
-    print("Changing cpu to maximum scaling freq")
-    sys_set_cpu_max_scaling_freq(sys_get_cpu_max_freq())
-    sleep(sleeptime)
-    print("Current cpu max scaling freq is {}".format(sys_get_cpu_max_scaling_freq()))
+        print("Changing cpu to maximum scaling freq")
+        sys_set_cpu_max_scaling_freq(sys_get_cpu_max_freq())
+        sleep(sleeptime)
+        print("Current cpu max scaling freq is {}".format(sys_get_cpu_max_scaling_freq()))
 
-    print("Disabling turbo")
-    sys_set_cpu_turbo(False)
-    sleep(sleeptime)
-    print("Current cpu max scaling freq is {}".format(sys_get_cpu_max_scaling_freq()))
+        print("Disabling turbo")
+        sys_set_cpu_turbo(False)
+        sleep(sleeptime)
+        print("Current cpu max scaling freq is {}".format(sys_get_cpu_max_scaling_freq()))
 
-    print("Enabling turbo")
-    sys_set_cpu_turbo(True)
-    sleep(sleeptime)
-    print("Current cpu max scaling freq is {}".format(sys_get_cpu_max_scaling_freq()))
+        print("Enabling turbo")
+        sys_set_cpu_turbo(True)
+        sleep(sleeptime)
+        print("Current cpu max scaling freq is {}".format(sys_get_cpu_max_scaling_freq()))
 
-
-    print("Changing cpu to minimum scaling freq")
-    sys_set_cpu_max_scaling_freq(sys_get_cpu_min_freq())
-    sleep(sleeptime)
-    print("Current cpu max scaling freq is {}".format(sys_get_cpu_max_scaling_freq()))
-
+        print("Changing cpu to minimum scaling freq")
+        sys_set_cpu_max_scaling_freq(sys_get_cpu_min_freq())
+        sleep(sleeptime)
+        print("Current cpu max scaling freq is {}".format(sys_get_cpu_max_scaling_freq()))

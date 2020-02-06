@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.5.0
+- Fixed bug when cpufreq isn't configured in kernel.
+
 ## 0.4.0
 - Added suppor for MBR disk installations.
 - Added man documentation.

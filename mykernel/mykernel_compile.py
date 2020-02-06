@@ -3,7 +3,7 @@ from datetime import datetime
 from multiprocessing import cpu_count
 from mykernel.mykernel_initramfs import initramfs
 from mykernel.myconfigparser import MyConfigParser
-from mykernel.cpupower import sys_set_cpu_max_scaling_freq, sys_get_cpu_max_freq, sys_get_cpu_max_scaling_freq
+from mykernel.cpupower import sys_set_cpu_max_scaling_freq, sys_get_cpu_max_freq, sys_get_cpu_max_scaling_freq, is_cpufreq_configured
 from mykernel.objects.command import command
 from mykernel.version import __version__, __versiondate__
 from mykernel.gettext import _
@@ -17,8 +17,10 @@ def main():
     args=parser.parse_args()
     config=MyConfigParser('/etc/mykernel/mykernel.ini')
     
-    cpu_hz_before=sys_get_cpu_max_scaling_freq()
-    cpu_hz=config.get('cpupower','cpu_hz',  str(sys_get_cpu_max_freq()))
+    if is_cpufreq_configured():
+        cpu_hz_before=sys_get_cpu_max_scaling_freq()
+        cpu_hz=config.get('cpupower','cpu_hz',  str(sys_get_cpu_max_freq()))
+        sys_set_cpu_max_scaling_freq(int(cpu_hz))
     
     efi=config.get("grub", "efi", "True")
     boot_directory =config.get("grub", 'boot_directory', '/boot')
@@ -32,10 +34,7 @@ def main():
         config.save()
         print("You must set your settings in /etc/mykernel/mykernel.ini. Use man mykernel for help.")
         exit(0)
-    
-    sys_set_cpu_max_scaling_freq(int(cpu_hz))
 
-    #chdir("/usr/src/linux")
     if encrypted_root_partition!="":
         initramfs(encrypted_root_partition, start, boot_directory)
     command("make -j{}".format(cpu_count()))
@@ -50,16 +49,7 @@ def main():
         command("grub-install {}".format(mbr_device))
         command("grub-mkconfig -o {}/grub/grub.cfg".format(boot_directory))
     
-    sys_set_cpu_max_scaling_freq(cpu_hz_before)
+    if is_cpufreq_configured():
+        sys_set_cpu_max_scaling_freq(cpu_hz_before)
     config.save()
     print("Compilation with {} processors took {}".format(datetime.now()-start,  cpu_count()))
-##!/bin/bash
-#if [ $# -ne 0 ]
-#then
-#  echo "Programa que ayuda a la compilación de un nuevo kernel en Gentoo"
-#  echo "Se debe copiar el .config en el nuevo directorio y hacer # make oldconfig"
-#  echo "Después se debe ejecutar: # compile.kernel"
-#  echo "Si la particion boot no es la sda1 y la luks la sda4, debes cambiar este script"
-#fi
-
-
