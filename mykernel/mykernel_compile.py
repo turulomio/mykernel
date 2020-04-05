@@ -7,7 +7,7 @@ from mykernel.cpupower import sys_set_cpu_max_scaling_freq, sys_get_cpu_max_freq
 from mykernel.objects.command import command
 from mykernel.version import __version__, __versiondate__
 from mykernel.gettext import _
-from os import environ
+from os import environ, system
 from sys import exit
 
 def main():
@@ -16,6 +16,7 @@ def main():
     parser.add_argument('--version', action='version', version="{} ({})".format(__version__, __versiondate__))
     parser.add_argument('--config', help=_("Write a config file in /etc/mykernel/mykernel.ini"),  action='store_true',  default=False)
     parser.add_argument('--ccache', help=_("Use ccache to compile"),  action='store_true',  default=False)
+    parser.add_argument('--ccache_stats', help=_("Shows ccache statistics"),  action='store_true',  default=False)
     args=parser.parse_args()
     config=MyConfigParser('/etc/mykernel/mykernel.ini')
     
@@ -24,10 +25,12 @@ def main():
         cpu_hz=config.get('cpupower','cpu_hz',  str(sys_get_cpu_max_freq()))
         sys_set_cpu_max_scaling_freq(int(cpu_hz))
         
-    if args.ccache==True:
+    if args.ccache==True or args.ccache_stats==True:
         environ["PATH"]="/usr/lib/ccache/bin:" + environ["PATH"]
-        environ["CCACHE_DIR"]="/var/cache/ccache"
-        print(environ)
+        environ["CCACHE_DIR"]="/var/cache/ccache_mykernel" #Different path of portage due to it has different user permissions
+        if args.ccache_stats==True:
+            system("ccache -s")
+            exit(0)
 
     efi=config.get("grub", "efi", "True")
     boot_directory =config.get("grub", 'boot_directory', '/boot')
