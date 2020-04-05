@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.6.0
+- Added ccache support with --ccache parameter.
+
 ## 0.5.0
 - Fixed bug when cpufreq isn't configured in kernel.
 
