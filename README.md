@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.0
+- Ccache directory is now /var/cache/ccache_mykernel.
+
 ## 0.6.0
 - Added ccache support with --ccache parameter.
 
