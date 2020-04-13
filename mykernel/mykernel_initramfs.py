@@ -100,6 +100,6 @@ echo "Failed to init Gentoo..."
     command("touch '{}/{}.txt'".format(output, dt))
 
     ## Genera el fichero
-    command("find . -print0 | cpio --null -o --format=newc > /tmp/myinit.cpio".format(output))#Cuidado no generarlo en el mismo sitio se grew
+    command("find . -print0 | cpio --null -o --format=newc > /tmp/myinit.cpio")#Cuidado no generarlo en el mismo sitio se grew
     command("cat /tmp/myinit.cpio > {}/initramfs-{}.img".format(efi_directory, vers))
     chdir("/usr/src/linux")
