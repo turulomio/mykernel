@@ -2,21 +2,22 @@
 # Traducciones al español para el paquete PACKAGE.
 # Copyright (C) 2018 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# root <turulomio@yahoo.es>, 2018.
 #
+# root <turulomio@yahoo.es>, 2018, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: mykernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-05 10:33+0200\n"
-"PO-Revision-Date: 2020-01-30 18:51+0100\n"
-"Last-Translator: root <turulomio@yahoo.es>\n"
-"Language-Team: Spanish\n"
+"POT-Creation-Date: 2020-04-13 21:18+0200\n"
+"PO-Revision-Date: 2020-04-13 21:21+0200\n"
+"Last-Translator: Turulomio <turulomio@yahoo.es>\n"
+"Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 19.12.3\n"
 
 msgid "New Release:"
 msgstr "Nueva versión:"
@@ -54,26 +55,43 @@ msgstr "Escribe un fichero de configuración en /etc/mykernel/mykernel.ini"
 msgid "MYKERNEL.INI CONFIGURATION HELP"
 msgstr "AYUDA PARA LA CONFIGURACIÓN DE MYKERNEL.INI"
 
-msgid "Number of CPU scaling frequency. Default is maximum scaling frequency. Leave at it is if you don't know what are you doing."
-msgstr "Número de la frequencia de escalado de la CPU. El valor por defecto es su valor máximo. Déjalo como está si no sabes que estás haciendo."
-
-msgid "Encrypted partition device name. Empty if there isn't encription in our system."
-msgstr "Nombre del dispostivo de la partición cifrada. Vacío si no hay cifrado en tu sistema."
-
-msgid "True if it uses and EFI system with gpt partition table. False if system uses dos partiton with mbr block."
+msgid ""
+"Number of CPU scaling frequency. Default is maximum scaling frequency. Leave"
+" at it is if you don't know what are you doing."
 msgstr ""
+"Número de la frequencia de escalado de la CPU. El valor por defecto es su"
+" valor máximo. Déjalo como está si no sabes que estás haciendo."
+
+msgid ""
+"Encrypted partition device name. Empty if there isn't encription in our"
+" system."
+msgstr ""
+"Nombre del dispostivo de la partición cifrada. Vacío si no hay cifrado en tu"
+" sistema."
+
+msgid ""
+"True if it uses and EFI system with gpt partition table. False if system uses"
+" dos partiton with mbr block."
+msgstr ""
+"Verdadero si tienes un sistema EFE con una tabla de particiones gpt. False si"
+" el sistema usa una partición dos con un bloque mbr."
 
 msgid "Path to boot directory. By default /boot."
 msgstr "Ruta al directorio boot. Por defecto /boot."
 
 msgid "Can be one of grub targets for efi. x86_64-efi, i386-pc..."
-msgstr "Puede ser uno de los objetivos de grub para efi. x86_64-efi, i386-pc..."
+msgstr ""
+"Puede ser uno de los objetivos de grub para efi. x86_64-efi, i386-pc..."
 
 msgid "Partition name where EFI directory is."
 msgstr "Nombre de la partición donde está el directorio EFI"
 
-msgid "Device name where mbr is going to be installed. Only works for none EFI systems."
+msgid ""
+"Device name where mbr is going to be installed. Only works for none EFI"
+" systems."
 msgstr ""
+"Nombre del dispositivo donde el mbr va a ser instalado. Solo funciona para"
+" sistemas que no son EFI."
 
 msgid "My method to compile the Linux kernel"
 msgstr "Mi método para compilar el kernel de Linux"
@@ -81,8 +99,8 @@ msgstr "Mi método para compilar el kernel de Linux"
 msgid "Write a config file in /etc/mykernel/mykernel.ini"
 msgstr "Escribe un fichero de configuración /etc/mykernel/mykernel.ini"
 
-msgid "Use ccache to compile"
-msgstr "Usa ccache para compilar"
-
 msgid "Shows ccache statistics"
-msgstr ""
+msgstr "Muestra estadísticas de ccache"
+
+#~ msgid "Use ccache to compile"
+#~ msgstr "Usa ccache para compilar"

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.0
+- Ccache is used by default.
+- Removed --ccache argument.
+- Portage CCACHE_DIR is used emerging kernel modules.
+
 ## 0.7.0
 - Ccache directory is now /var/cache/ccache_mykernel.
 

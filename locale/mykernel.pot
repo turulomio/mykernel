@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-05 10:33+0200\n"
+"POT-Creation-Date: 2020-04-13 21:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,9 +78,6 @@ msgid "My method to compile the Linux kernel"
 msgstr ""
 
 msgid "Write a config file in /etc/mykernel/mykernel.ini"
-msgstr ""
-
-msgid "Use ccache to compile"
 msgstr ""
 
 msgid "Shows ccache statistics"
