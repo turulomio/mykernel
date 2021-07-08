@@ -26,7 +26,7 @@ def initramfs(encrypted_root_partition, start, efi_directory):
     dt=dtnaive2string(start, "%Y%m%d%H%M")
     output="/tmp/myinit-{}/".format(dt)
 
-    saved=set(["/bin/sh", "/bin/echo", "/bin/mount", "/bin/umount","/sbin/cryptsetup", "/sbin/fsck.ext4","/sbin/switch_root"])
+    saved=set(["/bin/sh", "/bin/echo", "/bin/mount", "/bin/umount","/sbin/cryptsetup", "/sbin/fsck.ext4","/sbin/switch_root", "/bin/ls"])
     saved.add("/lib64/ld-linux-x86-64.so.2")#Si falla comand unknown será por este
 
     vers=version()
@@ -40,8 +40,12 @@ mount -t sysfs sysfs /sys
 
 echo 0 > /proc/sys/kernel/printk
 
+ls /dev
+
 cryptsetup luksOpen {0} root
-fsck.ext4 /dev/mapper/root
+ls /dev
+ls /dev/mapper
+echo "fsck.ext4 /dev/mapper/root"
 mount /dev/mapper/root /newroot
 
 umount /proc
@@ -60,7 +64,7 @@ echo "Failed to init Gentoo..."
     chdir(output)
 
     #Make dirs
-    for d in ["bin", "dev","etc", "lib64", "newroot", "proc", "sbin", "sys","usr/bin","usr/lib64"]:
+    for d in ["bin", "dev","etc", "lib64", "newroot", "proc", "sbin", "sys","usr/bin","usr/lib64","run/cryptsetup"]:
         command("mkdir -p {}/{}".format(output,d))
     command("ln -s lib64 lib")
     chdir(output+"/usr/")
@@ -95,6 +99,10 @@ echo "Failed to init Gentoo..."
     for f in saved:
        command("cp  {0} {1}{0}".format(f, output))
        saved.add("{}".format(f))
+
+
+    command (f'cp /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/libgcc_s.so.1 {output}/lib/libgcc_s.so')
+    command (f'cp /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/libgcc_s.so.1 {output}/lib/libgcc_s.so.1')
 
     #Create timestamp
     command("touch '{}/{}.txt'".format(output, dt))
