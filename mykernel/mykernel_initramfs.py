@@ -44,7 +44,7 @@ echo 0 > /proc/sys/kernel/printk
 ls /dev
 
 cryptsetup luksOpen {0} root
-echo "fsck.ext4 /dev/mapper/root"
+fsck.ext4 /dev/mapper/root
 mount /dev/mapper/root /newroot
 
 umount /proc
