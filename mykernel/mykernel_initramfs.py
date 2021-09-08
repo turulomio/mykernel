@@ -2,6 +2,7 @@ from mykernel.datetime_functions import dtnaive2string
 from mykernel.objects.command import command
 from os import path,  popen, chdir
 from sys import exit
+from subprocess import run
 
 def version():
     if path.exists("/usr/src/linux/Makefile"):
@@ -43,8 +44,6 @@ echo 0 > /proc/sys/kernel/printk
 ls /dev
 
 cryptsetup luksOpen {0} root
-ls /dev
-ls /dev/mapper
 echo "fsck.ext4 /dev/mapper/root"
 mount /dev/mapper/root /newroot
 
@@ -100,9 +99,10 @@ echo "Failed to init Gentoo..."
        command("cp  {0} {1}{0}".format(f, output))
        saved.add("{}".format(f))
 
-
-    command (f'cp /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/libgcc_s.so.1 {output}/lib/libgcc_s.so')
-    command (f'cp /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/libgcc_s.so.1 {output}/lib/libgcc_s.so.1')
+    gccversion=run("gcc -dumpversion", shell=True, capture_output=True).stdout.decode("UTF-8")[:-1]
+    ## Needed in w computer
+    command (f'cp /usr/lib/gcc/x86_64-pc-linux-gnu/{gccversion}/libgcc_s.so.1 {output}/lib/libgcc_s.so')
+    command (f'cp /usr/lib/gcc/x86_64-pc-linux-gnu/{gccversion}/libgcc_s.so.1 {output}/lib/libgcc_s.so.1')
 
     #Create timestamp
     command("touch '{}/{}.txt'".format(output, dt))
