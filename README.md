@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.0
+- Added gcc library to initramfs, needed in some environments.
+
 ## 0.8.0
 - Ccache is used by default.
 - Removed --ccache argument.
