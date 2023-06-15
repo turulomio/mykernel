@@ -1,4 +1,6 @@
 # Changelog
+## 0.10.0 (2023-06-15)
+- Migrated to poetry project
 
 ## 0.9.0
 - Added gcc library to initramfs, needed in some environments.
