@@ -1,4 +1,4 @@
-from mykernel.datetime_functions import dtnaive2string
+from mykernel.reusing.datetime_functions import dtnaive2string
 from mykernel.objects.command import command
 from os import path,  popen, chdir
 from sys import exit

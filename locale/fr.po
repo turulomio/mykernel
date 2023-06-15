@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RecPermissions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-13 21:18+0200\n"
+"POT-Creation-Date: 2023-06-15 17:12+0200\n"
 "PO-Revision-Date: 2018-11-03 07:11+0100\n"
 "Last-Translator: root <turulomio@yahoo.es>\n"
 "Language-Team: French\n"
@@ -16,6 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "My method to compile the Linux kernel"
+msgstr ""
+
+msgid "Write a config file in /etc/mykernel/mykernel.ini"
+msgstr ""
+
+msgid "Shows ccache statistics"
+msgstr ""
 
 msgid "New Release:"
 msgstr "Nouvelle sortie :"
@@ -34,9 +43,6 @@ msgstr " * Créer un nouveau ebuild Gentoo avec la nouvelle version"
 
 msgid "  * Upload to portage repository"
 msgstr " * Uploader au dépôt de portage"
-
-msgid "Uninstall command only works in Linux"
-msgstr "La commande 'désinstaller' marche seulement sur Linux"
 
 msgid "DESCRIPTION"
 msgstr "LA DESCRIPTION"
@@ -74,14 +80,8 @@ msgstr ""
 msgid "Device name where mbr is going to be installed. Only works for none EFI systems."
 msgstr ""
 
-msgid "My method to compile the Linux kernel"
-msgstr ""
-
-msgid "Write a config file in /etc/mykernel/mykernel.ini"
-msgstr ""
-
-msgid "Shows ccache statistics"
-msgstr ""
+#~ msgid "Uninstall command only works in Linux"
+#~ msgstr "La commande 'désinstaller' marche seulement sur Linux"
 
 #~ msgid "If changed restart from first python setup.py doc"
 #~ msgstr "S'il y a eu modification, recommencer depuis le premier document python setup.py"

@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "mykernel"
+version = "0.9.0"
+description = "My kernel scripts to compile it in Gentoo systems"
+authors = ["turulomio <turulomio@yahoo.es>"]
+license = "GPL-3.0 license"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytz = "^2023.3"
+
+[tool.poetry.group.dev.dependencies]
+poetry = "^1.5.1"
+poethepoet = "^0.20.0"
+mangenerator = "^0.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+mykernel = 'mykernel.mykernel_compile:main'
+
+
+[tool.poe.tasks]
+translate = { script = "mykernel.poethepoet:translate" }
+release = { script = "mykernel.poethepoet:release" }
+reusing = { script = "mykernel.poethepoet:reusing" }
+
+[project.urls]
+homepage = "https://github.com/turulomio/mykernel/"
+repository = "https://github.com/turulomio/mykernel/"
+changelog = "https://github.com/turulomio/mykernel#changelog"
