@@ -9,6 +9,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 pytz = "^2023.3"
+pycryptodome = "^3.18.0"
 
 [tool.poetry.group.dev.dependencies]
 poetry = "^1.5.1"
@@ -27,6 +28,7 @@ mykernel = 'mykernel.mykernel_compile:main'
 translate = { script = "mykernel.poethepoet:translate" }
 release = { script = "mykernel.poethepoet:release" }
 reusing = { script = "mykernel.poethepoet:reusing" }
+mangenerator = { script = "mykernel.poethepoet:mangenerator" }
 
 [project.urls]
 homepage = "https://github.com/turulomio/mykernel/"
