@@ -37,12 +37,13 @@ def mangenerator():
         """
             Create man pages for parameter language
         """
+        from gettext import install,  translation
         for language in ["en", "es", "fr"]:
             if language=="en":
-                lang1=gettext.install('mykernel', 'badlocale')
+                lang1=install('mykernel', 'badlocale')
                 man=Man("man/man1/mykernel")
             else:
-                lang1=gettext.translation('mykernel', 'mykernel/locale', languages=[language])
+                lang1=translation('mykernel', 'mykernel/locale', languages=[language])
                 lang1.install()
                 man=Man("man/{}/man1/mykernel".format(language))
             print("  - DESCRIPTION in {} is {}".format(language, _("DESCRIPTION")))

@@ -1,4 +1,4 @@
-.TH MYKERNEL 1 2021\-09\-08
+.TH MYKERNEL 1 2023\-06\-15
 .SH NAME
 
 .B mykernel:
@@ -6,10 +6,10 @@ Change files and directories owner and permissions recursively.
 .SH SYNOPSIS
 
 mykernel usage: mykernel [\-h] [\-\-version] [\-\-config]
-.SH DESCRIPTION
+.SH DESCRIPCI\('ON
 
 .PP
-This app has the following mandatory parameters:
+Esta aplicaci\('on tiene los siguientes par\('ametros obligatorios:
 .PP
 .RS
 .B \-\-config
@@ -17,10 +17,10 @@ This app has the following mandatory parameters:
 .PP
 .RS
 .RS
-It writes a config file in /etc/mykernel/mykernel.ini
+Escribe un fichero de configuraci\('on en /etc/mykernel/mykernel.ini
 .RE
 .RE
-.SH MYKERNEL.INI CONFIGURATION HELP
+.SH AYUDA PARA LA CONFIGURACI\('ON DE MYKERNEL.INI
 
 .PP
 .B [cpupower]
@@ -31,7 +31,7 @@ It writes a config file in /etc/mykernel/mykernel.ini
 .PP
 .RS
 .RS
-Number of CPU scaling frequency. Default is maximum scaling frequency. Leave at it is if you don't know what are you doing.
+N\('umero de la frequencia de escalado de la CPU. El valor por defecto es su valor m\('aximo. D\('ejalo como est\('a si no sabes que est\('as haciendo.
 .RE
 .RE
 .PP
@@ -43,7 +43,7 @@ Number of CPU scaling frequency. Default is maximum scaling frequency. Leave at 
 .PP
 .RS
 .RS
-Encrypted partition device name. Empty if there isn't encription in our system.
+Nombre del dispostivo de la partici\('on cifrada. Vac\('io si no hay cifrado en tu sistema.
 .RE
 .RE
 .PP
@@ -55,7 +55,7 @@ Encrypted partition device name. Empty if there isn't encription in our system.
 .PP
 .RS
 .RS
-True if it uses and EFI system with gpt partition table. False if system uses dos partiton with mbr block.
+Verdadero si tienes un sistema EFE con una tabla de particiones gpt. False si el sistema usa una partici\('on dos con un bloque mbr.
 .RE
 .RE
 .PP
@@ -65,7 +65,7 @@ True if it uses and EFI system with gpt partition table. False if system uses do
 .PP
 .RS
 .RS
-Path to boot directory. By default /boot.
+Ruta al directorio boot. Por defecto /boot.
 .RE
 .RE
 .PP
@@ -75,7 +75,7 @@ Path to boot directory. By default /boot.
 .PP
 .RS
 .RS
-Can be one of grub targets for efi. x86_64\-efi, i386\-pc...
+Puede ser uno de los objetivos de grub para efi. x86_64\-efi, i386\-pc...
 .RE
 .RE
 .PP
@@ -85,7 +85,7 @@ Can be one of grub targets for efi. x86_64\-efi, i386\-pc...
 .PP
 .RS
 .RS
-Partition name where EFI directory is.
+Nombre de la partici\('on donde est\('a el directorio EFI
 .RE
 .RE
 .PP
@@ -95,6 +95,6 @@ Partition name where EFI directory is.
 .PP
 .RS
 .RS
-Device name where mbr is going to be installed. Only works for none EFI systems.
+Nombre del dispositivo donde el mbr va a ser instalado. Solo funciona para sistemas que no son EFI.
 .RE
 .RE
