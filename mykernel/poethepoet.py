@@ -4,20 +4,19 @@ from datetime import date
 from mykernel.version import __version__
 from os import system
 from sys import argv
-from mykernel.gettext import _
+from mykernel.commons import _
 
 def release():
         print(_("New Release:"))
         print(_("  * Change version and date in version.py"))
+        print(_("  * Change version and date in pyproject.toml"))
         print(_("  * Edit Changelog in README"))
         print("  * poe translate")
         print("  * mcedit locale/es.po")
         print("  * poe translate")
-        print("  * python setup.py install")
         print("  * git commit -a -m 'mykernel-{}'".format(__version__))
         print("  * git push")
-        print(_("  * Make a new tag in github"))
-        print("  * python setup.py uninstall")
+        print(_("  * Make a new tag in github"))        
         print(_("  * Create a new gentoo ebuild with the new version"))
         print(_("  * Upload to portage repository")) 
 

@@ -1,5 +1,5 @@
 from pydicts.casts import dtnaive2str
-from mykernel.commons import command,  kernel_version
+from mykernel.commons import command,  kernel_version, _
 from os import  popen, chdir
 from subprocess import run
 
@@ -13,7 +13,8 @@ def initramfs(encrypted_root_partition, start, efi_directory):
     saved=set(["/bin/sh", "/bin/echo", "/bin/mount", "/bin/umount","/sbin/cryptsetup", "/sbin/fsck.ext4","/sbin/switch_root", "/bin/ls"])
     saved.add("/lib64/ld-linux-x86-64.so.2")#Si falla comand unknown será por este
 
-    vers=kernel_version()
+    var_kernel_version=kernel_version()
+    print (_("Version detected: {0}").format(var_kernel_version))
     lastsetcount=0
 
     initfile="""#!/bin/sh
@@ -92,5 +93,5 @@ echo "Failed to init Gentoo..."
 
     ## Genera el fichero
     command("find . -print0 | cpio --null -o --format=newc > /tmp/myinit.cpio")#Cuidado no generarlo en el mismo sitio se grew
-    command("cat /tmp/myinit.cpio > {}/initramfs-{}.img".format(efi_directory, vers))
+    command("cat /tmp/myinit.cpio > {}/initramfs-{}.img".format(efi_directory, var_kernel_version))
     chdir("/usr/src/linux")

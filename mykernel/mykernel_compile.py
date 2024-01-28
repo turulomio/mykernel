@@ -49,7 +49,7 @@ def main():
     if args.config==True: #Writes a config file
         config.save()
         print("You must set your settings in /etc/mykernel/mykernel.ini. Use man mykernel for help.")
-        exit(0)
+        exit(3)
         
         
     var_kernel_version=kernel_version()
