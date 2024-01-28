@@ -1,14 +1,10 @@
-
 from mangenerator import Man
-from mykernel.reusing.file_functions import replace_in_file
 from mykernel.reusing.github import download_from_github
 from datetime import date
 from mykernel.version import __version__
 from os import system
 from sys import argv
 from mykernel.gettext import _
-
-
 
 def release():
         print(_("New Release:"))
@@ -97,8 +93,4 @@ def reusing():
         download_from_github('turulomio','reusingcode','python/myconfigparser.py', 'mykernel/reusing/')
         download_from_github('turulomio','reusingcode','python/github.py', 'mykernel/reusing/')
         download_from_github('turulomio','reusingcode','python/cpupower.py', 'mykernel/reusing/')
-        download_from_github('turulomio','reusingcode','python/datetime_functions.py', 'mykernel/reusing/')
-        download_from_github('turulomio','reusingcode','python/casts.py', 'mykernel/reusing/')
 
-    replace_in_file("mykernel/reusing/myconfigparser.py",  "from casts",  "from .casts")
-    replace_in_file("mykernel/reusing/myconfigparser.py",  "from datetime_functions",  "from .datetime_functions")

@@ -4,10 +4,9 @@ from multiprocessing import cpu_count
 from mykernel.mykernel_initramfs import initramfs
 from mykernel.reusing.myconfigparser import MyConfigParser
 from mykernel.reusing.cpupower import sys_set_cpu_max_scaling_freq, sys_get_cpu_max_freq, sys_get_cpu_max_scaling_freq, is_cpufreq_configured
-from mykernel.objects.command import command
+from mykernel.commons import command,  kernel_version, _
 from mykernel.version import __version__, __versiondate__
-from mykernel.gettext import _
-from os import environ, system
+from os import environ, system, chdir
 from sys import exit
 
 
@@ -16,7 +15,6 @@ def main():
     parser=ArgumentParser(description=_("My method to compile the Linux kernel"))
     parser.add_argument('--version', action='version', version="{} ({})".format(__version__, __versiondate__))
     parser.add_argument('--config', help=_("Write a config file in /etc/mykernel/mykernel.ini"),  action='store_true',  default=False)
-    #parser.add_argument('--ccache', help=_("Use ccache to compile"),  action='store_true',  default=False)
     parser.add_argument('--ccache_stats', help=_("Shows ccache statistics"),  action='store_true',  default=False)
     args=parser.parse_args()
     config=MyConfigParser('/etc/mykernel/mykernel.ini')
@@ -42,15 +40,36 @@ def main():
     efi_partition=config.get("grub", 'efi_partition',  '/dev/sda1')
     mbr_device=config.get("grub", "mbr_device", "")
     
-    encrypted_root_partition=config.get("initramfs", 'encrypted_root_partition', '')
+    dracut_generate=config.getBoolean("dracut_initramfs", 'generate', 'True')
+    
+    
+    mykernel_encrypted_root_partition=config.get("mykernel_initramfs", 'encrypted_root_partition', '')
+    mykernel_generate=config.getBoolean("mykernel_initramfs", 'generate', False)
     
     if args.config==True: #Writes a config file
         config.save()
         print("You must set your settings in /etc/mykernel/mykernel.ini. Use man mykernel for help.")
         exit(0)
+        
+        
+    var_kernel_version=kernel_version()
+    print (_("Version detected: {0}").format(var_kernel_version))
+    
 
-    if encrypted_root_partition!="":
-        initramfs(encrypted_root_partition, start, boot_directory)
+    if mykernel_generate is True and dracut_generate is True:
+        print(_("Mykernel and Dracut initramfs generation is selected at the same time. Please fix it in /etc/mykernel/mykernel.ini"))
+        exit(2)
+
+    if mykernel_generate is True:
+        if mykernel_encrypted_root_partition!="":
+            initramfs(mykernel_encrypted_root_partition, start, boot_directory)
+            
+    if dracut_generate is True:
+        command(f"dracut --kver {var_kernel_version}")
+
+
+    chdir("/usr/src/linux")
+
     command("make -j{}".format(cpu_count()))
     command("make modules_install")
     command("make install")
