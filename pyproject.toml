@@ -11,6 +11,7 @@ python = ">=3.11,<4.0"
 pycryptodome = ">=3.18.0"
 pydicts = ">=0.13.0"
 
+
 [tool.poetry.group.dev.dependencies]
 poetry = ">=1.5.1"
 poethepoet = ">=0.20.0"
