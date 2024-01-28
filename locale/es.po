@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mykernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-15 17:12+0200\n"
+"POT-Creation-Date: 2024-01-28 16:35+0100\n"
 "PO-Revision-Date: 2020-04-13 21:21+0200\n"
 "Last-Translator: Turulomio <turulomio@yahoo.es>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -28,11 +28,21 @@ msgstr "Escribe un fichero de configuración /etc/mykernel/mykernel.ini"
 msgid "Shows ccache statistics"
 msgstr "Muestra estadísticas de ccache"
 
+#, python-brace-format
+msgid "Version detected: {0}"
+msgstr "Versión detectada: {0}"
+
+msgid "Mykernel and Dracut initramfs generation is selected at the same time. Please fix it in /etc/mykernel/mykernel.ini"
+msgstr ""
+
 msgid "New Release:"
 msgstr "Nueva versión:"
 
 msgid "  * Change version and date in version.py"
 msgstr "  * Cambiar la versión y la fecha en version.py"
+
+msgid "  * Change version and date in pyproject.toml"
+msgstr ""
 
 msgid "  * Edit Changelog in README"
 msgstr "  * Modificar el Changelog en README"
