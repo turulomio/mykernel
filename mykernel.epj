@@ -1,8 +1,8 @@
 {
   "header": {
     "comment": "eric project file for project mykernel",
-    "copyright": "Copyright (C) 2023 , ",
-    "saved": "2023-06-15, 17:27:47"
+    "copyright": "Copyright (C) 2024 , ",
+    "saved": "2024-01-28, 16:21:54"
   },
   "project": {
     "AUTHOR": "",
@@ -74,18 +74,19 @@
     "RESOURCES": [],
     "SOURCES": [
       "mykernel/__init__.py",
-      "mykernel/gettext.py",
+      "mykernel/commons.py",
       "mykernel/mykernel_check.py",
       "mykernel/mykernel_compile.py",
       "mykernel/mykernel_initramfs.py",
       "mykernel/objects/command.py",
       "mykernel/poethepoet.py",
       "mykernel/reusing/cpupower.py",
-      "mykernel/reusing/datetime_functions.py",
+      "mykernel/reusing/file_functions.py",
       "mykernel/reusing/github.py",
       "mykernel/reusing/myconfigparser.py",
       "mykernel/version.py"
     ],
+    "SOURCESDIR": "",
     "SPELLEXCLUDES": "",
     "SPELLLANGUAGE": "en_US",
     "SPELLWORDS": "",

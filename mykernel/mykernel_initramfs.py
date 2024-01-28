@@ -1,36 +1,20 @@
-from mykernel.reusing.datetime_functions import dtnaive2string
-from mykernel.objects.command import command
-from os import path,  popen, chdir
-from sys import exit
+from pydicts.casts import dtnaive2str
+from mykernel.commons import command,  kernel_version, _
+from os import  popen, chdir
 from subprocess import run
-
-def version():
-    if path.exists("/usr/src/linux/Makefile"):
-       f=open("/usr/src/linux/Makefile")
-       f.readline()
-       version=f.readline().split(" = ")[1].strip()
-       subversion=f.readline().split(" = ")[1].strip()
-       subsubversion=f.readline().split(" = ")[1].strip()
-       subsubsubversion=f.readline().split(" = ")[1].strip()
-       s="{}.{}.{}{}".format(version,subversion,subsubversion,subsubsubversion)
-       print ("Version detected: {}".format(s))
-    else:
-       print ("Version not detected")
-       exit(255)
-    return s
-
 
 
 ###########################
 
 def initramfs(encrypted_root_partition, start, efi_directory):
-    dt=dtnaive2string(start, "%Y%m%d%H%M")
+    dt=dtnaive2str(start, "%Y%m%d%H%M")
     output="/tmp/myinit-{}/".format(dt)
 
     saved=set(["/bin/sh", "/bin/echo", "/bin/mount", "/bin/umount","/sbin/cryptsetup", "/sbin/fsck.ext4","/sbin/switch_root", "/bin/ls"])
     saved.add("/lib64/ld-linux-x86-64.so.2")#Si falla comand unknown será por este
 
-    vers=version()
+    var_kernel_version=kernel_version()
+    print (_("Version detected: {0}").format(var_kernel_version))
     lastsetcount=0
 
     initfile="""#!/bin/sh
@@ -109,5 +93,5 @@ echo "Failed to init Gentoo..."
 
     ## Genera el fichero
     command("find . -print0 | cpio --null -o --format=newc > /tmp/myinit.cpio")#Cuidado no generarlo en el mismo sitio se grew
-    command("cat /tmp/myinit.cpio > {}/initramfs-{}.img".format(efi_directory, vers))
+    command("cat /tmp/myinit.cpio > {}/initramfs-{}.img".format(efi_directory, var_kernel_version))
     chdir("/usr/src/linux")

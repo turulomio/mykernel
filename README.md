@@ -1,3 +1,30 @@
+# MyKernel
+## Gentoo kernel with root luks example
+
+We create luks partition with `cryptsetup`
+
+With `blkid` we can see created partitions UUID
+
+/dev/nvme0n1p1: UUID="51F2-B573" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="3bb72034-0028-4b4b-a022-86dcf77991bf"
+
+/dev/nvme0n1p2: UUID="e3905174-0bfc-406c-8958-8004cfec6528" TYPE="crypto_LUKS" PARTUUID="01037e81-d022-c041-a85e-6e872cbcb791"
+
+/dev/mapper/root: UUID="ebc859bc-a777-4953-9c92-178c89b52222" BLOCK_SIZE="4096" TYPE="ext4"
+
+Gentoo package install-kernel must have dracut USE
+
+
+We edit /etc/dracut.conf
+```
+add_dracutmodules+=" crypt dm rootfs-block "
+kernel_cmdline+=" root=UUID=ebc859bc-a777-4953-9c92-178c89b52222 rd.luks.uuid=e3905174-0bfc-406c-8958-8004cfec6528 "
+```
+
+We edit /etc/default/grub
+```
+GRUB_CMDLINE_LINUX_DEFAULT="crypt_root=nvme0n1p2"
+```
+
 # Changelog
 ## 0.10.0 (2023-06-15)
 - Migrated to poetry project
