@@ -2,7 +2,7 @@
   "header": {
     "comment": "eric project file for project mykernel",
     "copyright": "Copyright (C) 2024 , ",
-    "saved": "2024-01-28, 15:37:02"
+    "saved": "2024-01-28, 16:21:54"
   },
   "project": {
     "AUTHOR": "",
@@ -75,15 +75,12 @@
     "SOURCES": [
       "mykernel/__init__.py",
       "mykernel/commons.py",
-      "mykernel/gettext.py",
       "mykernel/mykernel_check.py",
       "mykernel/mykernel_compile.py",
       "mykernel/mykernel_initramfs.py",
       "mykernel/objects/command.py",
       "mykernel/poethepoet.py",
-      "mykernel/reusing/casts.py",
       "mykernel/reusing/cpupower.py",
-      "mykernel/reusing/datetime_functions.py",
       "mykernel/reusing/file_functions.py",
       "mykernel/reusing/github.py",
       "mykernel/reusing/myconfigparser.py",
