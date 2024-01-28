@@ -21,7 +21,7 @@ def release():
         print(_("  * Upload to portage repository")) 
 
 def translate():
-        system("xgettext -L Python --no-wrap --no-location --from-code='UTF-8' -o locale/mykernel.pot mykernel/*.py mykernel/objects/*.py")
+        system("xgettext -L Python --no-wrap --no-location --from-code='UTF-8' -o locale/mykernel.pot mykernel/*.py")
         system("msgmerge -N --no-wrap -U locale/es.po locale/mykernel.pot")
         system("msgmerge -N --no-wrap -U locale/fr.po locale/mykernel.pot")
         system("msgfmt -cv -o mykernel/locale/es/LC_MESSAGES/mykernel.mo locale/es.po")

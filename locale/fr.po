@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RecPermissions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-15 17:12+0200\n"
+"POT-Creation-Date: 2024-01-28 16:35+0100\n"
 "PO-Revision-Date: 2018-11-03 07:11+0100\n"
 "Last-Translator: root <turulomio@yahoo.es>\n"
 "Language-Team: French\n"
@@ -26,11 +26,21 @@ msgstr ""
 msgid "Shows ccache statistics"
 msgstr ""
 
+#, python-brace-format
+msgid "Version detected: {0}"
+msgstr ""
+
+msgid "Mykernel and Dracut initramfs generation is selected at the same time. Please fix it in /etc/mykernel/mykernel.ini"
+msgstr ""
+
 msgid "New Release:"
 msgstr "Nouvelle sortie :"
 
 msgid "  * Change version and date in version.py"
 msgstr " * Changer la version et la date dans version.py"
+
+msgid "  * Change version and date in pyproject.toml"
+msgstr ""
 
 msgid "  * Edit Changelog in README"
 msgstr " * Editer le Changelog dans le README"

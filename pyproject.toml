@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mykernel"
-version = "0.9.0"
+version = "0.11.0"
 description = "My kernel scripts to compile it in Gentoo systems"
 authors = ["turulomio <turulomio@yahoo.es>"]
 license = "GPL-3.0 license"
