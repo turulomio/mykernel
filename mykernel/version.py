@@ -1,5 +1,5 @@
 from datetime import datetime
 
-__versiondatetime__ = datetime(2024, 1, 28, 16, 32)
+__versiondatetime__ = datetime(2025, 4, 13, 9, 4)
 __versiondate__ = __versiondatetime__.date()
-__version__ = '0.11.0'
+__version__ = '1.0.0'
