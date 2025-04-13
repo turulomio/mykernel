@@ -1,25 +1,35 @@
-[tool.poetry]
+[project]
 name = "mykernel"
-version = "0.11.0"
+version = "0.11.0dev"
 description = "My kernel scripts to compile it in Gentoo systems"
-authors = ["turulomio <turulomio@yahoo.es>"]
-license = "GPL-3.0 license"
+authors = [
+    {name = "turulomio",email = "turulomio@yahoo.es"}
+]
+license = {text = "GPL-3.0-only"}
 readme = "README.md"
+requires-python = ">=3.12,<4.0.0"
+dependencies = [
+    "pycryptodome (>=3.22.0,<4.0.0)",
+    "colorama (>=0.4.6,<0.5.0)",
+    "pydicts >=0.17.0"
+    
+]
 
-[tool.poetry.dependencies]
-python = ">=3.11,<4.0"
-pycryptodome = ">=3.18.0"
-pydicts = ">=0.13.0"
-
+[tool.poetry]
 
 [tool.poetry.group.dev.dependencies]
-poetry = ">=1.5.1"
-poethepoet = ">=0.20.0"
-mangenerator = ">=0.4.0"
+poetry = "^2.1.2"
+poethepoet = "^0.33.1"
+mangenerator = "^0.4.0"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[project.urls]
+homepage = "https://github.com/turulomio/mykernel/"
+repository = "https://github.com/turulomio/mykernel/"
+changelog = "https://github.com/turulomio/mykernel#changelog"
 
 [tool.poetry.scripts]
 mykernel = 'mykernel.mykernel_compile:main'
@@ -31,7 +41,3 @@ release = { script = "mykernel.poethepoet:release" }
 reusing = { script = "mykernel.poethepoet:reusing" }
 mangenerator = { script = "mykernel.poethepoet:mangenerator" }
 
-[project.urls]
-homepage = "https://github.com/turulomio/mykernel/"
-repository = "https://github.com/turulomio/mykernel/"
-changelog = "https://github.com/turulomio/mykernel#changelog"

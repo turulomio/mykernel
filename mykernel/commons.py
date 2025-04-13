@@ -1,9 +1,9 @@
 from gettext import translation
 from os import path, system
-from pkg_resources import resource_filename
+from importlib.resources import files
 
 def _(s):
-    t=translation('mykernel', resource_filename("mykernel","locale"))
+    t=translation('mykernel', files("mykernel") /"locale")
     return t.gettext(s)
 
 def kernel_version():
