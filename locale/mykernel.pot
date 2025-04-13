@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-13 08:56+0200\n"
+"POT-Creation-Date: 2025-04-13 09:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,27 +31,6 @@ msgid "Version detected: {0}"
 msgstr ""
 
 msgid "Mykernel and Dracut initramfs generation is selected at the same time. Please fix it in /etc/mykernel/mykernel.ini"
-msgstr ""
-
-msgid "New Release:"
-msgstr ""
-
-msgid "  * Change version and date in version.py"
-msgstr ""
-
-msgid "  * Change version and date in pyproject.toml"
-msgstr ""
-
-msgid "  * Edit Changelog in README"
-msgstr ""
-
-msgid "  * Make a new tag in github"
-msgstr ""
-
-msgid "  * Create a new gentoo ebuild with the new version"
-msgstr ""
-
-msgid "  * Upload to portage repository"
 msgstr ""
 
 msgid "DESCRIPTION"

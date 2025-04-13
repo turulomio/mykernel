@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mykernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-28 16:35+0100\n"
+"POT-Creation-Date: 2025-04-13 09:06+0200\n"
 "PO-Revision-Date: 2020-04-13 21:21+0200\n"
 "Last-Translator: Turulomio <turulomio@yahoo.es>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -34,27 +34,6 @@ msgstr "Versión detectada: {0}"
 
 msgid "Mykernel and Dracut initramfs generation is selected at the same time. Please fix it in /etc/mykernel/mykernel.ini"
 msgstr ""
-
-msgid "New Release:"
-msgstr "Nueva versión:"
-
-msgid "  * Change version and date in version.py"
-msgstr "  * Cambiar la versión y la fecha en version.py"
-
-msgid "  * Change version and date in pyproject.toml"
-msgstr ""
-
-msgid "  * Edit Changelog in README"
-msgstr "  * Modificar el Changelog en README"
-
-msgid "  * Make a new tag in github"
-msgstr "  * Hacer un nuevo tag en GitHub"
-
-msgid "  * Create a new gentoo ebuild with the new version"
-msgstr "  * Crea un nuevo ebuild de Gentoo con la nueva versión"
-
-msgid "  * Upload to portage repository"
-msgstr "  * Subelo al repositorio del portage"
 
 msgid "DESCRIPTION"
 msgstr "DESCRIPCIÓN"
@@ -91,6 +70,24 @@ msgstr "Nombre de la partición donde está el directorio EFI"
 
 msgid "Device name where mbr is going to be installed. Only works for none EFI systems."
 msgstr "Nombre del dispositivo donde el mbr va a ser instalado. Solo funciona para sistemas que no son EFI."
+
+#~ msgid "New Release:"
+#~ msgstr "Nueva versión:"
+
+#~ msgid "  * Change version and date in version.py"
+#~ msgstr "  * Cambiar la versión y la fecha en version.py"
+
+#~ msgid "  * Edit Changelog in README"
+#~ msgstr "  * Modificar el Changelog en README"
+
+#~ msgid "  * Make a new tag in github"
+#~ msgstr "  * Hacer un nuevo tag en GitHub"
+
+#~ msgid "  * Create a new gentoo ebuild with the new version"
+#~ msgstr "  * Crea un nuevo ebuild de Gentoo con la nueva versión"
+
+#~ msgid "  * Upload to portage repository"
+#~ msgstr "  * Subelo al repositorio del portage"
 
 #~ msgid "Uninstall command only works in Linux"
 #~ msgstr "El comando 'uninstall' solo funciona en Linux"

@@ -24,6 +24,10 @@ GRUB_CMDLINE_LINUX_DEFAULT="crypt_root=nvme0n1p2"
 ```
 
 ## Changelog
+### 1.0.0 (2025-04-13)
+- Migrated to poetry>2.0.0
+- Security bugs
+
 ### 0.11.0 (2024-01-28)
 - Added dracut support. See /etc/mykernel/mykernel.ini 
 

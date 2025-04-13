@@ -7,18 +7,27 @@ from sys import argv
 from mykernel.commons import _
 
 def release():
-        print(_("New Release:"))
-        print(_("  * Change version and date in version.py"))
-        print(_("  * Change version and date in pyproject.toml"))
-        print(_("  * Edit Changelog in README"))
-        print("  * poe translate")
-        print("  * mcedit locale/es.po")
-        print("  * poe translate")
-        print("  * git commit -a -m 'mykernel-{}'".format(__version__))
-        print("  * git push")
-        print(_("  * Make a new tag in github"))        
-        print(_("  * Create a new gentoo ebuild with the new version"))
-        print(_("  * Upload to portage repository")) 
+    print("""Nueva versión:
+  * Crear un nuevo issue en github con el nombre myemerge-NUEVAVERSION
+  * Copiar el codigo de github para cambiar de versión y pegarlo en la consola
+  * Cambiar la version en pyproject.toml
+  * Cambiar la versión y la fecha en version.py
+  * Vuelve a ejecutar poe release
+  * Modificar el Changelog README.md
+  * poe translate
+  * mcedit locale/es.po
+  * poe translate
+  * git commit -a -m 'mykernel-{0}'
+  * git push
+  * Hacer un pull request con los cambios a master
+  * Hacer un nuevo tag en GitHub
+  * git checkout master
+  * git pull
+  * poetry build
+  * poetry publish
+  * Crea un nuevo ebuild en Gentoo con la nueva versión
+  * Subelo al repositorio myportage
+""".format(__version__))
 
 def translate():
         system("xgettext -L Python --no-wrap --no-location --from-code='UTF-8' -o locale/mykernel.pot mykernel/*.py")
