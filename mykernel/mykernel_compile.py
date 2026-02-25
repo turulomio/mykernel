@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 from datetime import datetime
 from multiprocessing import cpu_count
 from mykernel.mykernel_initramfs import initramfs
-from mykernel.reusing.myconfigparser import MyConfigParser
+from configparser_rb.core import ConfigParserRB
 from mykernel.reusing.cpupower import sys_set_cpu_max_scaling_freq, sys_get_cpu_max_freq, sys_get_cpu_max_scaling_freq, is_cpufreq_configured
 from mykernel.commons import command,  kernel_version, _
 from mykernel.version import __version__, __versiondate__
@@ -17,7 +17,7 @@ def main():
     parser.add_argument('--config', help=_("Write a config file in /etc/mykernel/mykernel.ini"),  action='store_true',  default=False)
     parser.add_argument('--ccache_stats', help=_("Shows ccache statistics"),  action='store_true',  default=False)
     args=parser.parse_args()
-    config=MyConfigParser('/etc/mykernel/mykernel.ini')
+    config=ConfigParserRB('/etc/mykernel/mykernel.ini')
     
     
     environ["PATH"]="/usr/lib/ccache/bin:" + environ["PATH"]
