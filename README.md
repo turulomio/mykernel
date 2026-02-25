@@ -1,4 +1,58 @@
-# MyKernel
+# mykernel - Linux Kernel Compilation Tool for Gentoo
+
+## Descripción
+
+`mykernel` is a Python-based tool designed to simplify and automate the Linux kernel compilation process, specifically tailored for **Gentoo Linux** systems. It handles various compilation aspects, including `ccache` configuration, CPU frequency scaling, initramfs generation (both custom and with Dracut), kernel compilation, module installation, and GRUB configuration for both EFI and MBR systems.
+
+## Usage
+
+To run `mykernel`, use the following command:
+
+```bash
+mykernel [OPCIONES]
+```
+
+### Opciones
+
+*   `--version`: Muestra el número de versión del programa y sale.
+*   `--config`: Escribe un archivo de configuración por defecto en `/etc/mykernel/mykernel.ini`.
+    *   **Nota:** Después de ejecutar con `--config`, debes editar `/etc/mykernel/mykernel.ini` para establecer tus configuraciones deseadas. Usa `man mykernel` para obtener ayuda detallada sobre las opciones de configuración.
+*   `--ccache_stats`: Muestra las estadísticas de `ccache`.
+
+## Ayuda de Configuración de `mykernel.ini`
+
+La herramienta `mykernel` utiliza un archivo de configuración ubicado en `/etc/mykernel/mykernel.ini`. A continuación se detallan las secciones y parámetros disponibles:
+
+### `[cpupower]`
+
+*   **`cpu_hz`**
+    *   **Descripción:** Número de la frecuencia de escalado de la CPU. El valor por defecto es la frecuencia de escalado máxima detectada. Déjalo como está si no sabes lo que estás haciendo, ya que una configuración incorrecta puede afectar el rendimiento.
+
+### `[mykernel_initramfs]`
+
+*   **`encrypted_root_partition`**
+    *   **Descripción:** El nombre del dispositivo de la partición raíz cifrada (por ejemplo, `/dev/sda2`). Déjalo vacío si no hay cifrado en tu sistema.
+*   **`generate`**
+    *   **Descripción:** Establece a `True` para generar un initramfs personalizado utilizando la lógica interna de `mykernel`. Establece a `False` para deshabilitar. No puede ser `True` si `dracut_initramfs`'s `generate` también es `True`.
+
+### `[dracut_initramfs]`
+
+*   **`generate`**
+    *   **Descripción:** Establece a `True` para generar un initramfs utilizando Dracut. Establece a `False` para deshabilitar. No puede ser `True` si `mykernel_initramfs`'s `generate` también es `True`.
+
+### `[grub]`
+
+*   **`efi`**
+    *   **Descripción:** Establece a `True` si tu sistema utiliza un sistema EFI con una tabla de particiones GPT. Establece a `False` si tu sistema utiliza una tabla de particiones DOS con un bloque MBR.
+*   **`boot_directory`**
+    *   **Descripción:** La ruta al directorio de arranque. Por defecto, es `/boot`.
+*   **`efi_target`**
+    *   **Descripción:** Especifica el objetivo de GRUB para sistemas EFI. Ejemplos incluyen `x86_64-efi`, `i386-pc`.
+*   **`efi_partition`**
+    *   **Descripción:** El nombre de la partición donde se encuentra el directorio EFI (por ejemplo, `/dev/sda1`).
+*   **`mbr_device`**
+    *   **Descripción:** El nombre del dispositivo donde se instalará el MBR (por ejemplo, `/dev/sda`). Este parámetro solo es aplicable para sistemas no EFI.
+
 ## Gentoo kernel with root luks example
 
 We create luks partition with `cryptsetup`
@@ -22,46 +76,3 @@ We edit /etc/default/grub
 ```
 GRUB_CMDLINE_LINUX_DEFAULT="crypt_root=nvme0n1p2"
 ```
-
-## Changelog
-### 1.0.0 (2025-04-13)
-- Migrated to poetry>2.0.0
-- Security bugs
-
-### 0.11.0 (2024-01-28)
-- Added dracut support. See /etc/mykernel/mykernel.ini 
-
-### 0.10.0 (2023-06-15)
-- Migrated to poetry project
-
-### 0.9.0
-- Added gcc library to initramfs, needed in some environments.
-
-### 0.8.0
-- Ccache is used by default.
-- Removed --ccache argument.
-- Portage CCACHE_DIR is used emerging kernel modules.
-
-### 0.7.0
-- Ccache directory is now /var/cache/ccache_mykernel.
-
-### 0.6.0
-- Added ccache support with --ccache parameter.
-
-### 0.5.0
-- Fixed bug when cpufreq isn't configured in kernel.
-
-### 0.4.0
-- Added suppor for MBR disk installations.
-- Added man documentation.
-- Improved spanish translations.
-
-### 0.3.0
-- Solved critical bug due to a bad return
-
-### 0.2.0
-- Converted to a python module
-- You can set your parameters in /etc/mykernel/mykernel.ini
-
-### 0.1.0
-- Imported from old scripts

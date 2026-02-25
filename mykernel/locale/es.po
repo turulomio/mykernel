@@ -5,11 +5,10 @@
 #
 # root <turulomio@yahoo.es>, 2018, 2020.
 msgid ""
-msgstr ""
-"Project-Id-Version: mykernel\n"
+msgstr "Project-Id-Version: mykernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-13 09:06+0200\n"
-"PO-Revision-Date: 2020-04-13 21:21+0200\n"
+"POT-Creation-Date: 2023-10-27 10:00+0200\n"
+"PO-Revision-Date: 2023-10-27 10:00+0200\n"
 "Last-Translator: Turulomio <turulomio@yahoo.es>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
 "Language: es\n"
@@ -33,13 +32,13 @@ msgid "Version detected: {0}"
 msgstr "Versión detectada: {0}"
 
 msgid "Mykernel and Dracut initramfs generation is selected at the same time. Please fix it in /etc/mykernel/mykernel.ini"
-msgstr ""
+msgstr "La generación de initramfs de Mykernel y Dracut está seleccionada al mismo tiempo. Por favor, corrígelo en /etc/mykernel/mykernel.ini"
 
 msgid "DESCRIPTION"
 msgstr "DESCRIPCIÓN"
 
 msgid "Change files and directories owner and permissions recursively."
-msgstr ""
+msgstr "Cambia recursivamente el propietario y los permisos de archivos y directorios."
 
 msgid "This app has the following mandatory parameters:"
 msgstr "Esta aplicación tiene los siguientes parámetros obligatorios:"
