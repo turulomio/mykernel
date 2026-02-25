@@ -13,3 +13,6 @@ __pycache__/
 *.DS_Store
 .eric7project
 .jedi
+build/
+dist/
+mykernel.egg-info/
