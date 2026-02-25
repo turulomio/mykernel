@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 from datetime import datetime
 from multiprocessing import cpu_count
 from mykernel.mykernel_initramfs import initramfs
-from configparser_rb import ConfigParserRB
+from configparser_rb.core import ConfigParserRB
 from mykernel.reusing.cpupower import sys_set_cpu_max_scaling_freq, sys_get_cpu_max_freq, sys_get_cpu_max_scaling_freq, is_cpufreq_configured
 from mykernel.commons import command,  kernel_version, _
 from mykernel.version import __version__, __versiondate__
