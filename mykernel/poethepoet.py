@@ -1,10 +1,7 @@
-from mangenerator import Man
 from mykernel.reusing.github import download_from_github
-from datetime import date
 from mykernel.version import __version__
 from os import system
 from sys import argv
-from mykernel.commons import _
 
 def release():
     print("""Nueva versión:

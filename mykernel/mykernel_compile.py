@@ -2,8 +2,8 @@ from argparse import ArgumentParser
 from datetime import datetime
 from multiprocessing import cpu_count
 from mykernel.mykernel_initramfs import initramfs
-from configparser_rb.core import ConfigParserRB
-from mykernel.reusing.cpupower import sys_set_cpu_max_scaling_freq, sys_get_cpu_max_freq, sys_get_cpu_max_scaling_freq, is_cpufreq_configured
+from mykernel.configfile import ConfigFile
+from mykernel.reusing.cpupower import sys_set_cpu_max_scaling_freq, sys_get_cpu_max_scaling_freq, is_cpufreq_configured
 from mykernel.commons import command,  kernel_version, _
 from mykernel.version import __version__, __versiondate__
 from os import environ, system, chdir
@@ -17,7 +17,7 @@ def main():
     parser.add_argument('--config', help=_("Write a config file in /etc/mykernel/mykernel.ini"),  action='store_true',  default=False)
     parser.add_argument('--ccache_stats', help=_("Shows ccache statistics"),  action='store_true',  default=False)
     args=parser.parse_args()
-    config=ConfigParserRB('/etc/mykernel/mykernel.ini')
+    config=ConfigFile('/etc/mykernel/mykernel.ini')
     
     
     environ["PATH"]="/usr/lib/ccache/bin:" + environ["PATH"]
@@ -29,42 +29,24 @@ def main():
 
     if is_cpufreq_configured():
         cpu_hz_before=sys_get_cpu_max_scaling_freq()
-        cpu_hz=config.get('cpupower','cpu_hz',  str(sys_get_cpu_max_freq()))
-        sys_set_cpu_max_scaling_freq(int(cpu_hz))
-        
+        sys_set_cpu_max_scaling_freq(int(config.cpu_hz))
 
-
-    efi=config.get("grub", "efi", "True")
-    boot_directory =config.get("grub", 'boot_directory', '/boot')
-    efi_target=config.get("grub", 'efi_target', 'x86_64-efi')
-    efi_partition=config.get("grub", 'efi_partition',  '/dev/sda1')
-    mbr_device=config.get("grub", "mbr_device", "")
-    
-    dracut_generate=config.getBoolean("dracut_initramfs", 'generate', 'True')
-    
-    
-    mykernel_encrypted_root_partition=config.get("mykernel_initramfs", 'encrypted_root_partition', '')
-    mykernel_generate=config.getBoolean("mykernel_initramfs", 'generate', False)
-    
     if args.config==True: #Writes a config file
-        config.save()
-        print("You must set your settings in /etc/mykernel/mykernel.ini. Use man mykernel for help.")
+        if not config.created:
+            config.save()
+            print(_("You must set your settings in {}. See README for help.").format(config.filename))
         exit(3)
-        
         
     var_kernel_version=kernel_version()
     print (_("Version detected: {0}").format(var_kernel_version))
     
+    config.check()
 
-    if mykernel_generate is True and dracut_generate is True:
-        print(_("Mykernel and Dracut initramfs generation is selected at the same time. Please fix it in /etc/mykernel/mykernel.ini"))
-        exit(2)
-
-    if mykernel_generate is True:
-        if mykernel_encrypted_root_partition!="":
-            initramfs(mykernel_encrypted_root_partition, start, boot_directory)
+    if config.mykernel_generate is True:
+        if config.mykernel_encrypted_root_partition!="":
+            initramfs(config.mykernel_encrypted_root_partition, start, config.boot_directory)
             
-    if dracut_generate is True:
+    if config.dracut_generate is True:
         command(f"dracut --kver {var_kernel_version}")
 
 
@@ -76,12 +58,12 @@ def main():
     environ["CCACHE_DIR"]="/var/cache/ccache" #Emerge needs portage CCACHE_DIR
     command("emerge @module-rebuild --keep-going")
 
-    if efi=="True":#Gpt partition with efi
-        command("grub-install --efi-directory={} --target={} {}".format(boot_directory, efi_target, efi_partition))
-        command("grub-mkconfig -o {}/grub/grub.cfg".format(boot_directory))
+    if config.efi=="True":#Gpt partition with efi
+        command("grub-install --efi-directory={} --target={} {}".format(config.boot_directory, config.efi_target, config.efi_partition))
+        command("grub-mkconfig -o {}/grub/grub.cfg".format(config.boot_directory))
     else:#Dos partition with mbr
-        command("grub-install {}".format(mbr_device))
-        command("grub-mkconfig -o {}/grub/grub.cfg".format(boot_directory))
+        command("grub-install {}".format(config.mbr_device))
+        command("grub-mkconfig -o {}/grub/grub.cfg".format(config.boot_directory))
     
     if is_cpufreq_configured():
         sys_set_cpu_max_scaling_freq(cpu_hz_before)

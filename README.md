@@ -16,7 +16,7 @@ mykernel [OPCIONES]
 
 *   `--version`: Muestra el número de versión del programa y sale.
 *   `--config`: Escribe un archivo de configuración por defecto en `/etc/mykernel/mykernel.ini`.
-    *   **Nota:** Después de ejecutar con `--config`, debes editar `/etc/mykernel/mykernel.ini` para establecer tus configuraciones deseadas. Usa `man mykernel` para obtener ayuda detallada sobre las opciones de configuración.
+    *   **Nota:** Después de ejecutar con `--config`, debes editar `/etc/mykernel/mykernel.ini` para establecer tus configuraciones deseadas. Consulta la sección [Ayuda de Configuración de mykernel.ini](#ayuda-de-configuración-de-mykernelini) para obtener ayuda detallada.
 *   `--ccache_stats`: Muestra las estadísticas de `ccache`.
 
 ## Ayuda de Configuración de `mykernel.ini`
