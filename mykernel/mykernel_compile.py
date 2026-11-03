@@ -30,6 +30,7 @@ def main():
     if is_cpufreq_configured():
         cpu_hz_before=sys_get_cpu_max_scaling_freq()
         cpu_hz=config.get('cpupower','cpu_hz',  str(sys_get_cpu_max_freq()))
+        print(_("Setting CPU max scaling frequency to: {} Hz").format(cpu_hz))
         sys_set_cpu_max_scaling_freq(int(cpu_hz))
         
 
@@ -84,6 +85,7 @@ def main():
         command("grub-mkconfig -o {}/grub/grub.cfg".format(boot_directory))
     
     if is_cpufreq_configured():
+        print(_("Restoring CPU max scaling frequency to: {} Hz").format(cpu_hz_before))
         sys_set_cpu_max_scaling_freq(cpu_hz_before)
     config.save()
     print("Compilation with {} processors took {}".format(datetime.now()-start,  cpu_count()))
