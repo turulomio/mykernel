@@ -1,5 +1,4 @@
 from mangenerator import Man
-from mykernel.reusing.github import download_from_github
 from datetime import date
 from mykernel.version import __version__
 from os import system
@@ -36,18 +35,4 @@ def translate():
         system("msgfmt -cv -o mykernel/locale/es/LC_MESSAGES/mykernel.mo mykernel/locale/es.po")
         system("msgfmt -cv -o mykernel/locale/fr/LC_MESSAGES/mykernel.mo mykernel/locale/fr.po")
 
-def reusing():
-    """
-        Actualiza directorio reusing
-        poe reusing
-        poe reusing --local
-    """
-    local=False
-    if len(argv)==2 and argv[1]=="--local":
-        local=True
-        print("Update code in local without downloading was selected with --local")
-    if local is False:
-        download_from_github('turulomio','reusingcode','python/myconfigparser.py', 'mykernel/reusing/')
-        download_from_github('turulomio','reusingcode','python/github.py', 'mykernel/reusing/')
-        download_from_github('turulomio','reusingcode','python/cpupower.py', 'mykernel/reusing/')
 
