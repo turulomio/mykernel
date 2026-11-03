@@ -22,6 +22,9 @@ class ConfigFile(ConfigParserRB):
         Detects missing or obsolete keys/sections according to expected schema and updates config.
         """
         expected_schema = {
+            'ccache': {
+                'ccache': 'False',
+            },
             'cpupower': {
                 'cpu_hz': str(sys_get_cpu_max_freq()),
             },
@@ -71,6 +74,10 @@ class ConfigFile(ConfigParserRB):
 
     def load(self):
         self._sync()
+
+        # ccache
+        self.ccache = self.getBoolean("ccache", "ccache", False)
+        self.ccache_dir = Path("/var/cache/ccache_mykernel")
 
         # cpupower
         if is_cpufreq_configured():
