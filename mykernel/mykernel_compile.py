@@ -6,7 +6,7 @@ from mykernel.config import ConfigFile
 from pycpufreq import sys_set_cpu_max_scaling_freq, sys_get_cpu_max_scaling_freq, is_cpufreq_configured
 from mykernel.commons import kernel_version, _
 from mykernel.version import __version__, __versiondate__
-from os import environ, chdir
+from os import environ, chdir, geteuid
 from sys import exit
 import subprocess
 
@@ -18,15 +18,19 @@ def main():
     parser.add_argument('--config', help=_("Write a config file in /etc/mykernel/mykernel.ini"),  action='store_true',  default=False)
     parser.add_argument('--ccache_stats', help=_("Shows ccache statistics"),  action='store_true',  default=False)
     args=parser.parse_args()
-    config=ConfigFile('/etc/mykernel/mykernel.ini')
-    
-    
-    environ["PATH"]="/usr/lib/ccache/bin:" + environ["PATH"]
-    environ["CCACHE_DIR"]="/var/cache/ccache_mykernel" #Different path of portage due to it has different user permissions
-    
+
     if args.ccache_stats==True:
         subprocess.run(["ccache", "-s"])
         exit(0)
+
+    if geteuid() != 0:
+        print(_("Error: mykernel must be run as root."))
+        exit(1)
+
+    environ["PATH"] = "/usr/lib/ccache/bin:" + environ["PATH"]
+    environ["CCACHE_DIR"] = "/var/cache/ccache_mykernel"  # Different path of portage due to it has different user permissions
+
+    config = ConfigFile('/etc/mykernel/mykernel.ini')
 
     if is_cpufreq_configured():
         cpu_hz_before=sys_get_cpu_max_scaling_freq()

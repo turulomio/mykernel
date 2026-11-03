@@ -92,8 +92,35 @@ class ConfigFile(ConfigParserRB):
         self.mykernel_encrypted_root_partition = self.get("mykernel_initramfs", "encrypted_root_partition", "")
         self.mykernel_generate = self.getBoolean("mykernel_initramfs", "generate", False)
 
+    def save(self):
+        super().save()
+        try:
+            cfg_path = Path(self.filename)
+            if cfg_path.exists():
+                cfg_path.chmod(0o644)
+        except OSError:
+            pass
+
     def check(self):
+        try:
+            hz = int(self.cpu_hz)
+            if hz <= 0:
+                raise ValueError()
+        except (ValueError, TypeError):
+            print(_("Invalid cpu_hz value '{}' in /etc/mykernel/mykernel.ini. Must be a positive integer.").format(self.cpu_hz))
+            exit(2)
+
         if self.mykernel_generate is True and self.dracut_generate is True:
             print(_("Mykernel and Dracut initramfs generation is selected at the same time. Please fix it in /etc/mykernel/mykernel.ini"))
             exit(2)
+
+        if self.efi == "True":
+            if not self.efi_partition:
+                print(_("grub efi_partition cannot be empty when efi is True."))
+                exit(2)
+        else:
+            if not self.mbr_device:
+                print(_("grub mbr_device cannot be empty when efi is False."))
+                exit(2)
+
 
