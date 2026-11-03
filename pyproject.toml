@@ -7,18 +7,19 @@ authors = [
 ]
 license = {text = "GPL-3.0-only"}
 readme = "README.md"
-requires-python = ">=3.12,<4.0.0"
+requires-python = ">=3.14,<4.0.0"
 dependencies = [
     "colorama >=0.4.6",
-    "pydicts (>=1.5.0)", 
-    "configparser-rb (>=1.1.0)"
+    "pydicts (>=2.0.0)", 
+    "configparser-rb (>=1.1.0)", 
+    "pycpufreq (>=1.0.0,<2.0.0)"
 ]
 
 [tool.poetry]
 
 [tool.poetry.group.dev.dependencies]
 poetry = ">=2.5.1"
-poethepoet = ">=0.48.0"
+poethepoet = ">=0.49.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -36,5 +37,5 @@ mykernel = 'mykernel.mykernel_compile:main'
 [tool.poe.tasks]
 translate = { script = "mykernel.poethepoet:translate" }
 release = { script = "mykernel.poethepoet:release" }
-reusing = { script = "mykernel.poethepoet:reusing" }
+
 

@@ -1,10 +1,7 @@
 from mangenerator import Man
-from mykernel.reusing.github import download_from_github
-from datetime import date
 from mykernel.version import __version__
-from os import system
-from sys import argv
-from mykernel.commons import _
+from glob import glob
+import subprocess
 
 def release():
     print("""Nueva versión:
@@ -30,24 +27,12 @@ def release():
 """.format(__version__))
 
 def translate():
-        system("xgettext -L Python --no-wrap --no-location --from-code='UTF-8' -o mykernel/locale/mykernel.pot mykernel/*.py")
-        system("msgmerge -N --no-wrap -U mykernel/locale/es.po mykernel/locale/mykernel.pot")
-        system("msgmerge -N --no-wrap -U mykernel/locale/fr.po mykernel/locale/mykernel.pot")
-        system("msgfmt -cv -o mykernel/locale/es/LC_MESSAGES/mykernel.mo mykernel/locale/es.po")
-        system("msgfmt -cv -o mykernel/locale/fr/LC_MESSAGES/mykernel.mo mykernel/locale/fr.po")
+    py_files = glob("mykernel/*.py")
+    subprocess.run(["xgettext", "-L", "Python", "--no-wrap", "--no-location", "--from-code=UTF-8", "-o", "mykernel/locale/mykernel.pot", *py_files], check=True)
+    subprocess.run(["msgmerge", "-N", "--no-wrap", "-U", "mykernel/locale/es.po", "mykernel/locale/mykernel.pot"], check=True)
+    subprocess.run(["msgmerge", "-N", "--no-wrap", "-U", "mykernel/locale/fr.po", "mykernel/locale/mykernel.pot"], check=True)
+    subprocess.run(["msgfmt", "-cv", "-o", "mykernel/locale/es/LC_MESSAGES/mykernel.mo", "mykernel/locale/es.po"], check=True)
+    subprocess.run(["msgfmt", "-cv", "-o", "mykernel/locale/fr/LC_MESSAGES/mykernel.mo", "mykernel/locale/fr.po"], check=True)
 
-def reusing():
-    """
-        Actualiza directorio reusing
-        poe reusing
-        poe reusing --local
-    """
-    local=False
-    if len(argv)==2 and argv[1]=="--local":
-        local=True
-        print("Update code in local without downloading was selected with --local")
-    if local is False:
-        download_from_github('turulomio','reusingcode','python/myconfigparser.py', 'mykernel/reusing/')
-        download_from_github('turulomio','reusingcode','python/github.py', 'mykernel/reusing/')
-        download_from_github('turulomio','reusingcode','python/cpupower.py', 'mykernel/reusing/')
+
 
