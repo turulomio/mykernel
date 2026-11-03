@@ -1,14 +1,14 @@
-# Spanish translations for PACKAGE package
-# Traducciones al español para el paquete PACKAGE.
-# Copyright (C) 2018 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Spanish translations for mykernel package.
+# Copyright (C) 2018-2026 Turulomio
+# This file is distributed under the same license as the mykernel package.
+# Turulomio <turulomio@yahoo.es>, 2018-2026.
 #
-# root <turulomio@yahoo.es>, 2018, 2020.
 msgid ""
-msgstr "Project-Id-Version: mykernel\n"
+msgstr ""
+"Project-Id-Version: mykernel 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 10:00+0200\n"
-"PO-Revision-Date: 2023-10-27 10:00+0200\n"
+"POT-Creation-Date: 2026-11-03 18:15+0100\n"
+"PO-Revision-Date: 2026-11-03 18:15+0100\n"
 "Last-Translator: Turulomio <turulomio@yahoo.es>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
 "Language: es\n"
@@ -16,80 +16,49 @@ msgstr "Project-Id-Version: mykernel\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 19.12.3\n"
-
-msgid "My method to compile the Linux kernel"
-msgstr "Mi método para compilar el kernel de Linux"
-
-msgid "Write a config file in /etc/mykernel/mykernel.ini"
-msgstr "Escribe un fichero de configuración /etc/mykernel/mykernel.ini"
-
-msgid "Shows ccache statistics"
-msgstr "Muestra estadísticas de ccache"
 
 #, python-brace-format
 msgid "Version detected: {0}"
 msgstr "Versión detectada: {0}"
 
+msgid "Searching dependencies..."
+msgstr "Buscando dependencias..."
+
+msgid "WARNING: Configuration file created in {}. You must set your settings. See README for help."
+msgstr "AVISO: Archivo de configuración creado en {}. Debe establecer sus ajustes. Consulte README para obtener ayuda."
+
+msgid "Configuration file {} updated with missing/obsolete keys."
+msgstr "Archivo de configuración {} actualizado con las claves que faltaban u obsoletas."
+
+msgid "Invalid cpu_hz value '{}' in /etc/mykernel/mykernel.ini. Must be a positive integer."
+msgstr "Valor de cpu_hz '{}' no válido en /etc/mykernel/mykernel.ini. Debe ser un entero positivo."
+
 msgid "Mykernel and Dracut initramfs generation is selected at the same time. Please fix it in /etc/mykernel/mykernel.ini"
 msgstr "La generación de initramfs de Mykernel y Dracut está seleccionada al mismo tiempo. Por favor, corrígelo en /etc/mykernel/mykernel.ini"
 
-msgid "DESCRIPTION"
-msgstr "DESCRIPCIÓN"
+msgid "grub efi_partition cannot be empty when efi is True."
+msgstr "La partición EFI de grub (efi_partition) no puede estar vacía cuando efi es True."
 
-msgid "Change files and directories owner and permissions recursively."
-msgstr "Cambia recursivamente el propietario y los permisos de archivos y directorios."
+msgid "grub mbr_device cannot be empty when efi is False."
+msgstr "El dispositivo MBR de grub (mbr_device) no puede estar vacío cuando efi es False."
 
-msgid "This app has the following mandatory parameters:"
-msgstr "Esta aplicación tiene los siguientes parámetros obligatorios:"
+msgid "My method to compile the Linux kernel"
+msgstr "Mi método para compilar el kernel de Linux"
 
-msgid "It writes a config file in /etc/mykernel/mykernel.ini"
+msgid "Write a config file in /etc/mykernel/mykernel.ini"
 msgstr "Escribe un fichero de configuración en /etc/mykernel/mykernel.ini"
 
-msgid "MYKERNEL.INI CONFIGURATION HELP"
-msgstr "AYUDA PARA LA CONFIGURACIÓN DE MYKERNEL.INI"
+msgid "Shows ccache statistics"
+msgstr "Muestra estadísticas de ccache"
 
-msgid "Number of CPU scaling frequency. Default is maximum scaling frequency. Leave at it is if you don't know what are you doing."
-msgstr "Número de la frequencia de escalado de la CPU. El valor por defecto es su valor máximo. Déjalo como está si no sabes que estás haciendo."
+msgid "Error: mykernel must be run as root."
+msgstr "Error: mykernel debe ejecutarse como root."
 
-msgid "Encrypted partition device name. Empty if there isn't encription in our system."
-msgstr "Nombre del dispostivo de la partición cifrada. Vacío si no hay cifrado en tu sistema."
+msgid "Setting CPU max scaling frequency to: {} Hz"
+msgstr "Estableciendo frecuencia máxima de escalado de CPU a: {} Hz"
 
-msgid "True if it uses and EFI system with gpt partition table. False if system uses dos partiton with mbr block."
-msgstr "Verdadero si tienes un sistema EFE con una tabla de particiones gpt. False si el sistema usa una partición dos con un bloque mbr."
+msgid "You must set your settings in {}. See README for help."
+msgstr "Debe establecer sus ajustes en {}. Consulte README para obtener ayuda."
 
-msgid "Path to boot directory. By default /boot."
-msgstr "Ruta al directorio boot. Por defecto /boot."
-
-msgid "Can be one of grub targets for efi. x86_64-efi, i386-pc..."
-msgstr "Puede ser uno de los objetivos de grub para efi. x86_64-efi, i386-pc..."
-
-msgid "Partition name where EFI directory is."
-msgstr "Nombre de la partición donde está el directorio EFI"
-
-msgid "Device name where mbr is going to be installed. Only works for none EFI systems."
-msgstr "Nombre del dispositivo donde el mbr va a ser instalado. Solo funciona para sistemas que no son EFI."
-
-#~ msgid "New Release:"
-#~ msgstr "Nueva versión:"
-
-#~ msgid "  * Change version and date in version.py"
-#~ msgstr "  * Cambiar la versión y la fecha en version.py"
-
-#~ msgid "  * Edit Changelog in README"
-#~ msgstr "  * Modificar el Changelog en README"
-
-#~ msgid "  * Make a new tag in github"
-#~ msgstr "  * Hacer un nuevo tag en GitHub"
-
-#~ msgid "  * Create a new gentoo ebuild with the new version"
-#~ msgstr "  * Crea un nuevo ebuild de Gentoo con la nueva versión"
-
-#~ msgid "  * Upload to portage repository"
-#~ msgstr "  * Subelo al repositorio del portage"
-
-#~ msgid "Uninstall command only works in Linux"
-#~ msgstr "El comando 'uninstall' solo funciona en Linux"
-
-#~ msgid "Use ccache to compile"
-#~ msgstr "Usa ccache para compilar"
+msgid "Restoring CPU max scaling frequency to: {} Hz"
+msgstr "Restaurando frecuencia máxima de escalado de CPU a: {} Hz"
