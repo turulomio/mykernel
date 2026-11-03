@@ -23,6 +23,11 @@ mykernel [OPCIONES]
 
 La herramienta `mykernel` utiliza un archivo de configuración ubicado en `/etc/mykernel/mykernel.ini`. A continuación se detallan las secciones y parámetros disponibles:
 
+### `[ccache]`
+
+*   **`ccache`**
+    *   **Descripción:** Establece a `True` para usar `ccache` durante la compilación. Establece a `False` para deshabilitarlo. Por defecto es `False`. Si es `False`, se ignora la lógica de `ccache` y se elimina el directorio `/var/cache/ccache_mykernel`.
+
 ### `[cpupower]`
 
 *   **`cpu_hz`**

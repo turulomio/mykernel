@@ -8,6 +8,7 @@ from mykernel.commons import kernel_version, _
 from mykernel.version import __version__, __versiondate__
 from os import environ, chdir, geteuid
 from sys import exit
+import shutil
 import subprocess
 
 
@@ -19,18 +20,27 @@ def main():
     parser.add_argument('--ccache_stats', help=_("Shows ccache statistics"),  action='store_true',  default=False)
     args=parser.parse_args()
 
-    if args.ccache_stats==True:
-        subprocess.run(["ccache", "-s"])
-        exit(0)
-
     if geteuid() != 0:
         print(_("Error: mykernel must be run as root."))
         exit(1)
 
-    environ["PATH"] = "/usr/lib/ccache/bin:" + environ["PATH"]
-    environ["CCACHE_DIR"] = "/var/cache/ccache_mykernel"  # Different path of portage due to it has different user permissions
-
     config = ConfigFile('/etc/mykernel/mykernel.ini')
+
+    ccache_dir = config.ccache_dir
+    if config.ccache is True:
+        environ["PATH"] = "/usr/lib/ccache/bin:" + environ["PATH"]
+        environ["CCACHE_DIR"] = str(ccache_dir)
+    else:
+        if ccache_dir.exists():
+            print(f"rm -rf {ccache_dir}")
+            shutil.rmtree(ccache_dir)
+
+    if args.ccache_stats == True:
+        if config.ccache is True:
+            subprocess.run(["ccache", "-s"])
+        else:
+            print(_("ccache is disabled in configuration."))
+        exit(0)
 
     if is_cpufreq_configured():
         cpu_hz_before=sys_get_cpu_max_scaling_freq()
@@ -63,7 +73,8 @@ def main():
     subprocess.run(["make", f"-j{cpu_count()}"], check=True)
     subprocess.run(["make", "modules_install"], check=True)
     subprocess.run(["make", "install"], check=True)
-    environ["CCACHE_DIR"]="/var/cache/ccache" #Emerge needs portage CCACHE_DIR
+    if config.ccache is True:
+        environ["CCACHE_DIR"]="/var/cache/ccache" #Emerge needs portage CCACHE_DIR
     subprocess.run(["emerge", "@module-rebuild", "--keep-going"], check=True)
 
     if config.efi=="True":#Gpt partition with efi
