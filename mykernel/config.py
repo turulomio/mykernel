@@ -2,7 +2,7 @@ from configparser_rb.core import ConfigParserRB
 from pycpufreq import sys_get_cpu_max_freq, is_cpufreq_configured
 from mykernel.commons import _
 from sys import exit
-from os.path import exists
+from pathlib import Path
 
 
 class ConfigFile(ConfigParserRB):
@@ -10,7 +10,7 @@ class ConfigFile(ConfigParserRB):
     Class to manage /etc/mykernel/mykernel.ini configuration file
     """
     def __init__(self, filename="/etc/mykernel/mykernel.ini"):
-        self.created = not exists(filename)
+        self.created = not Path(filename).exists()
         super().__init__(filename)
         self.load()
         if self.created:
@@ -67,6 +67,7 @@ class ConfigFile(ConfigParserRB):
 
         if changed and not self.created:
             self.save()
+            print(_("Configuration file {} updated with missing/obsolete keys.").format(self.filename))
 
     def load(self):
         self._sync()
