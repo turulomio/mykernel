@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-25 17:47+0100\n"
+"POT-Creation-Date: 2026-11-03 18:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,31 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#, python-brace-format
+msgid "Version detected: {0}"
+msgstr ""
+
+msgid "Searching dependencies..."
+msgstr ""
+
+msgid "WARNING: Configuration file created in {}. You must set your settings. See README for help."
+msgstr ""
+
+msgid "Configuration file {} updated with missing/obsolete keys."
+msgstr ""
+
+msgid "Invalid cpu_hz value '{}' in /etc/mykernel/mykernel.ini. Must be a positive integer."
+msgstr ""
+
+msgid "Mykernel and Dracut initramfs generation is selected at the same time. Please fix it in /etc/mykernel/mykernel.ini"
+msgstr ""
+
+msgid "grub efi_partition cannot be empty when efi is True."
+msgstr ""
+
+msgid "grub mbr_device cannot be empty when efi is False."
+msgstr ""
 
 msgid "My method to compile the Linux kernel"
 msgstr ""
@@ -26,45 +51,14 @@ msgstr ""
 msgid "Shows ccache statistics"
 msgstr ""
 
-#, python-brace-format
-msgid "Version detected: {0}"
+msgid "Error: mykernel must be run as root."
 msgstr ""
 
-msgid "Mykernel and Dracut initramfs generation is selected at the same time. Please fix it in /etc/mykernel/mykernel.ini"
+msgid "Setting CPU max scaling frequency to: {} Hz"
 msgstr ""
 
-msgid "DESCRIPTION"
+msgid "You must set your settings in {}. See README for help."
 msgstr ""
 
-msgid "Change files and directories owner and permissions recursively."
-msgstr ""
-
-msgid "This app has the following mandatory parameters:"
-msgstr ""
-
-msgid "It writes a config file in /etc/mykernel/mykernel.ini"
-msgstr ""
-
-msgid "MYKERNEL.INI CONFIGURATION HELP"
-msgstr ""
-
-msgid "Number of CPU scaling frequency. Default is maximum scaling frequency. Leave at it is if you don't know what are you doing."
-msgstr ""
-
-msgid "Encrypted partition device name. Empty if there isn't encription in our system."
-msgstr ""
-
-msgid "True if it uses and EFI system with gpt partition table. False if system uses dos partiton with mbr block."
-msgstr ""
-
-msgid "Path to boot directory. By default /boot."
-msgstr ""
-
-msgid "Can be one of grub targets for efi. x86_64-efi, i386-pc..."
-msgstr ""
-
-msgid "Partition name where EFI directory is."
-msgstr ""
-
-msgid "Device name where mbr is going to be installed. Only works for none EFI systems."
+msgid "Restoring CPU max scaling frequency to: {} Hz"
 msgstr ""

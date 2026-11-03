@@ -1,4 +1,3 @@
-from mangenerator import Man
 from mykernel.version import __version__
 from glob import glob
 import subprocess
@@ -10,7 +9,6 @@ def release():
   * Cambiar la version en pyproject.toml
   * Cambiar la versión y la fecha en version.py
   * Vuelve a ejecutar poe release
-  * Modificar el Changelog README.md
   * poe translate
   * mcedit locale/es.po
   * poe translate
